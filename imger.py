@@ -6,12 +6,16 @@ import os
 import multiprocessing
 dir = "img/"
 def download(url):
-    print url
+    #print url
     os.popen('wget -P %s %s'% (dir, url))
+    pass
     
 def parse(html):
+    print html
     f = open(html)
     for line in f:
+        pattern = 'onclick="(.*?)"' # delete onclick function
+        line = re.sub(pattern, "", line)
         match = re.findall(r"https:(.+?)jpg", line)
 
         #match = re.search("https:(.+?)jpg", line).group(1)
