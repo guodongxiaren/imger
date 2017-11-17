@@ -27,9 +27,17 @@ def parse(html):
             process = multiprocessing.Process(target=download,args=(url,))
             process.start()
 
+def basename(url):
+    i = url.rindex('/')
+    return url[i+1:]
+
 if __name__ == '__main__':
     print "start"
-    html = sys.argv[1]
+    #html = sys.argv[1]
+    url = sys.argv[1]
+    os.popen('wget ' + url)
+    
+    html = basename(url)
     
     #os.popen('mkdir -p '+ html)
     print html
